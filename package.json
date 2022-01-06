@@ -1,0 +1,14 @@
+{
+  "name": "SVGesus",
+  "version": "1.0.0",
+  "description": "Your Figma plugin",
+  "main": "code.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "@types/figma": "^1.0.4"
+  }
+}

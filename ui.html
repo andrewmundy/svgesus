@@ -1,0 +1,30 @@
+<div>
+  <button id="loadSvg">Load SVG</button>
+  <button id="setSvg">Set & Replace</button>
+</div>
+<textarea style="height:80%;margin-top:10px;font-size: 10px;" type="text" id="currentSvg"></textarea>
+
+<script>
+  const currentSvg = document.getElementById("currentSvg");
+
+  onmessage = (event) => {
+    if (event.data.pluginMessage.type === "response:svg") {
+      currentSvg.value = event.data.pluginMessage.selection;
+    }
+  }
+  const updateUI = () => {
+    const size = currentSvg.scrollHeight;
+
+    parent.postMessage({ pluginMessage: { type: "request:loadSvg", size } }, "*")
+  };
+
+
+  updateUI();
+  document.getElementById("loadSvg").onclick = () => {
+    updateUI();
+  }
+  document.getElementById("setSvg").onclick = () => {
+    const svg = currentSvg.value;
+    parent.postMessage({ pluginMessage: { type: "request:setSvg", svg } }, "*")
+  }
+</script>
